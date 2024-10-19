@@ -1,5 +1,8 @@
 <template>
-    <form @submit.prevent="handleSubmit" class="mb-6 flex items-center gap-2">
+    <form
+        @submit.prevent="handleSubmit"
+        class="mb-6 flex items-center gap-2"
+    >
       <input
         v-model="name"
         type="text"
@@ -17,12 +20,14 @@
   
   <script setup>
   import { ref } from 'vue'
+  import { useHabitsStore } from "~/store/habits.js";
   
   const name = ref('')
+  const habitStore = useHabitsStore()
   
   const handleSubmit = async () => {
     if (name.value.trim()) {
-      console.log(name)
+      await habitStore.addHabit(name.value)
       name.value = ''
     }
   }
