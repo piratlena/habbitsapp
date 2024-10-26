@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { useHabitsStore } from "~/store/habits.js"
+import {useHabitsStore} from "~/store/habits.js"
 import HabitForm from '~/components/HabitForm.vue'
 import HabitList from '~/components/HabitList.vue'
 
@@ -19,12 +19,12 @@ const habitsStore = useHabitsStore()
 let habitsList = habitsStore.habits
 
 async function deleteHabit(habit) {
-  habitsList = habitsList.filter((habit) => habit.id !== habit.id )
+  habitsList = habitsList.filter((habit) => habit.id !== habit.id)
   await habitsStore.deleteHabit(habit)
 }
 
 onMounted(async () => {
- await habitsStore.fetchAllHabits()
+  await habitsStore.fetchAllHabits()
 })
 
 </script>

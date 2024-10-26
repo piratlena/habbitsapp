@@ -7,7 +7,7 @@ export const useHabitsStore = defineStore('habitStore', {
     }),
     actions: {
         async fetchAllHabits() {
-            const { $db } = useNuxtApp()
+            const {$db} = useNuxtApp()
 
             const snapshot = await getDocs(collection($db, 'habits'))
             this.habits = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
@@ -26,7 +26,7 @@ export const useHabitsStore = defineStore('habitStore', {
         },
 
         async deleteHabit(habit) {
-            const { $db } = useNuxtApp()
+            const {$db} = useNuxtApp()
 
             const docRef = doc($db, 'habits', habit.id)
             await deleteDoc(docRef)

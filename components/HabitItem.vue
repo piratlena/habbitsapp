@@ -37,6 +37,7 @@ const props = defineProps({
     required: true
   }
 })
+
 function deleteHabit(habit) {
   emits('delete', habit)
 }
