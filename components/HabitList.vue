@@ -4,28 +4,29 @@
       <template
           v-if="!habits.length"
       >
-        <SkeletonItem v-for="item in [...Array(4)]"/>
+        <SkeletonItem
+            v-for="item in [...Array(4)]"
+            :key="item"
+        />
       </template>
 
       <HabitItem
           v-for="habit in habits"
           :habit="habit"
           :key="habit.id"
+          @delete="$emit('delete', habit)"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import {useHabitsStore} from "~/store/habits.js";
 
-defineProps({
+const props = defineProps({
   habits: {
     type: Array,
     required: true
   }
 })
-
-const habitStore = useHabitsStore()
 
 </script>

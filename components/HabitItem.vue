@@ -4,7 +4,12 @@
   >
     <div class="flex items-center justify-between mb-4">
       <p class="text-purple-500 font-bold">{{ habit.name }}</p>
-      <button class="text-gray-800">Delete</button>
+      <button
+          @click="deleteHabit(habit)"
+          class="text-gray-800"
+      >
+        Delete
+      </button>
     </div>
 
     <div class="flex items-center">
@@ -24,10 +29,15 @@
 </template>
 
 <script setup>
- defineProps({
+
+const emits = defineEmits(['delete'])
+const props = defineProps({
   habit: {
     type: Object,
     required: true
   }
 })
+function deleteHabit(habit) {
+  emits('delete', habit)
+}
 </script>
